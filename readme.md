@@ -1,7 +1,3 @@
-
-// =============================
-// File: README.md
-// =============================
 # Express + Mongo + JWT — Mini Challenge Solution
 
 A minimal, interview-ready API showcasing registration/login, protected routes, and pagination.
