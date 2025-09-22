@@ -1,4 +1,3 @@
-
 // =============================
 // File: src/modules/auth/auth.routes.js
 // =============================
@@ -6,6 +5,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import User from '../users/user.model.js';
 import { signJwt } from '../../lib/jwt.js';
+import { issueRefresh, rotateRefresh, revokeRefresh } from './refresh.service.js';
 
 const router = Router();
 
@@ -39,8 +39,40 @@ router.post('/login', async (req, res, next) => {
     if (!user) return res.status(401).json({ error: 'Invalid credentials' });
     const ok = await user.comparePassword(body.password);
     if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
-    const token = signJwt({ sub: user.id, email: user.email, role: user.role });
-    res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
+
+    const accessToken = signJwt({ sub: user.id, email: user.email, role: user.role });
+    const { raw: refreshToken, expiresAt: refreshExpiresAt } = await issueRefresh(user.id);
+
+    res.json({
+      accessToken,
+      refreshToken,       // prod: httpOnly cookie önerilir
+      refreshExpiresAt,
+      user: { id: user.id, email: user.email, name: user.name },
+    });
+  } catch (e) {
+    next(e);
+  }
+});
+
+const refreshSchema = z.object({ refreshToken: z.string().min(20) });
+
+router.post('/refresh', async (req, res) => {
+  try {
+    const { refreshToken } = refreshSchema.parse(req.body);
+    const { accessToken, refreshToken: newRefresh, refreshExpiresAt } = await rotateRefresh(refreshToken);
+    res.json({ accessToken, refreshToken: newRefresh, refreshExpiresAt });
+  } catch {
+    res.status(401).json({ error: 'Invalid refresh token' });
+  }
+});
+
+const logoutSchema = z.object({ refreshToken: z.string().min(20) });
+
+router.post('/logout', async (req, res, next) => {
+  try {
+    const { refreshToken } = logoutSchema.parse(req.body);
+    await revokeRefresh(refreshToken);
+    res.json({ message: 'Logged out' });
   } catch (e) {
     next(e);
   }
