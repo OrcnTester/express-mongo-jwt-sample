@@ -45,7 +45,7 @@ router.post('/login', async (req, res, next) => {
 
     res.json({
       accessToken,
-      refreshToken,       // prod: httpOnly cookie önerilir
+      refreshToken,       
       refreshExpiresAt,
       user: { id: user.id, email: user.email, name: user.name },
     });
