@@ -1,3 +1,24 @@
+<p align="center">
+  <a href="https://github.com/OrcnTester/express-mongo-jwt-sample">
+    <img alt="Stars" src="https://img.shields.io/github/stars/OrcnTester/express-mongo-jwt-sample?style=flat-square">
+  </a>
+  <a href="https://github.com/OrcnTester/express-mongo-jwt-sample/issues">
+    <img alt="Issues" src="https://img.shields.io/github/issues/OrcnTester/express-mongo-jwt-sample?style=flat-square">
+  </a>
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/OrcnTester/express-mongo-jwt-sample?style=flat-square">
+  <img alt="Node" src="https://img.shields.io/badge/node-20.x-339933?logo=node.js&logoColor=white&style=flat-square">
+  <img alt="Express" src="https://img.shields.io/badge/express-4.x-black?logo=express&logoColor=white&style=flat-square">
+  <img alt="MongoDB" src="https://img.shields.io/badge/mongodb-6.x-47A248?logo=mongodb&logoColor=white&style=flat-square">
+  <img alt="JWT" src="https://img.shields.io/badge/JWT-auth-000000?logo=jsonwebtokens&logoColor=white&style=flat-square">
+  <img alt="Zod" src="https://img.shields.io/badge/zod-validation-3E67B1?style=flat-square">
+  <img alt="Docker" src="https://img.shields.io/badge/docker-ready-0db7ed?logo=docker&logoColor=white&style=flat-square">
+  <a href="LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
+  </a>
+  <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square">
+</p>
+
+
 # Express + Mongo + JWT — Mini Challenge Solution
 
 A minimal, interview-ready API showcasing registration/login, protected routes, and pagination.
