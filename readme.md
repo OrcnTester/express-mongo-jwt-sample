@@ -48,3 +48,4 @@ http GET :3000/users/<ID> Authorization:"Bearer <TOKEN>"
 - Keeps handlers small & readable; centralized error handling.
 - Easy to extend with roles/permissions and rate-limiting.
 \n\n> Demo: Access+Refresh JWT rotation implemented ✅
+\n> Includes access+refresh JWT rotation with TTL-backed blacklist.
