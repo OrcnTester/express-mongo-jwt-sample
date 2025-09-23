@@ -64,3 +64,4 @@ http GET :3000/users/<ID> Authorization:"Bearer <TOKEN>"
 - Uses **Zod** for validation, **bcrypt** for password hashing, **JWT** for auth.
 - Keeps handlers small & readable; centralized error handling.
 - Easy to extend with roles/permissions and rate-limiting.
+\n\n> Demo: Access+Refresh JWT rotation implemented ✅
